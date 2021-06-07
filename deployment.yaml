@@ -1,0 +1,31 @@
+apiVersion: apps/v1    
+kind: Deployment    
+metadata:    
+  name: hello-tekton
+  labels:    
+    app: hello-tekton
+spec:    
+  replicas: 1    
+  selector:    
+    matchLabels:    
+      app: hello-tekton     
+  strategy:    
+    rollingUpdate:    
+      maxSurge: 25%    
+      maxUnavailable: 25%    
+    type: RollingUpdate
+  template:    
+    metadata:
+      labels:    
+        app: hello-tekton
+        version: V1
+    spec:    
+      containers:    
+      - image: hkdocker1702/hk-docker-repo:tag1    
+        imagePullPolicy: Always    
+        name: hello-tekton
+        ports:
+        - containerPort: 80 
+          protocol: TCP
+      imagePullSecrets:    
+      - name: regcred
