@@ -19,7 +19,7 @@ spec:
     metadata:
       labels:    
         app: hello-tekton
-        version: V1
+        version: V2
     spec:    
       containers:    
       - image: hkdocker1702/hk-docker-repo:tag1    
